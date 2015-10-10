@@ -4,7 +4,7 @@
 #include<string>
 using namespace std;
 
-//ÅĞ¶ÏÊÇ·ñÎªÀ¨ºÅ
+//åˆ¤æ–­æ˜¯å¦ä¸ºæ‹¬å·
 bool isPra(char c) 
 {
 	if(c=='('||c==')') 
@@ -13,27 +13,27 @@ bool isPra(char c)
 		return false;
 }
 
-//»ñµÃ·ûºÅµÄÓÅÏÈĞÔ
+//è·å¾—ç¬¦å·çš„ä¼˜å…ˆæ€§
 int getPri(char c) 
 {
 	switch(c) 
 	{
 	case '+':
 	case '-':
-		return 0;	//Èç¹ûÊÇ¼Ó¼õ£¬·µ»Ø0
+		return 0;	//å¦‚æœæ˜¯åŠ å‡ï¼Œè¿”å›0
 		break;
 	case '*':
 	case '/':
-		return 1;	//Èç¹ûÊÇ³Ë³ı£¬·µ»Ø1
+		return 1;	//å¦‚æœæ˜¯ä¹˜é™¤ï¼Œè¿”å›1
 		break;
 	case '(':
 	case ')':
-		return -1;  //×¢Òâ£¬ÕâÀï½«À¨ºÅÉèÎª×îµÍÓÅÏÈ¼¶£¬Òò´ËÀ¨ºÅ²»»á±»µ¯³ö£¬³ı·ÇÓöµ½ÓÒÀ¨ºÅ
+		return -1;  //æ³¨æ„ï¼Œè¿™é‡Œå°†æ‹¬å·è®¾ä¸ºæœ€ä½ä¼˜å…ˆçº§ï¼Œå› æ­¤æ‹¬å·ä¸ä¼šè¢«å¼¹å‡ºï¼Œé™¤éé‡åˆ°å³æ‹¬å·
 		break;
 	 }
 }
 
-//ÅĞ¶Ï·ûºÅµÄÓÅÏÈĞÔ
+//åˆ¤æ–­ç¬¦å·çš„ä¼˜å…ˆæ€§
 void check(char c, stack<char>& coll2, deque<char>& coll3) 
 {  
 	if(coll2.empty()) 
@@ -48,7 +48,7 @@ void check(char c, stack<char>& coll2, deque<char>& coll3)
 			coll2.push(c);
 		else 
 		{
-			//µ¯³öËùÓĞÔªËØÖ±µ½Óöµ½×óÀ¨ºÅ
+			//å¼¹å‡ºæ‰€æœ‰å…ƒç´ ç›´åˆ°é‡åˆ°å·¦æ‹¬å·
 			while(coll2.top()!='(') 
 			{  
 				char ch = coll2.top();
@@ -56,34 +56,34 @@ void check(char c, stack<char>& coll2, deque<char>& coll3)
 				coll2.pop();
 			}
 
-			//µ±Óöµ½×óÀ¨ºÅÊ±£¬µ¯³öµ«²»¼ÓÈëcoll3(ºó×º±í´ïÊ½ÖĞ£©
+			//å½“é‡åˆ°å·¦æ‹¬å·æ—¶ï¼Œå¼¹å‡ºä½†ä¸åŠ å…¥coll3(åç¼€è¡¨è¾¾å¼ä¸­ï¼‰
 			coll2.pop();  
 		}
 	}
-	else	//Èç¹û²»ÊÇÀ¨ºÅ
+	else	//å¦‚æœä¸æ˜¯æ‹¬å·
 	{
-		//È¡³öÕ»¶¥ÔªËØ£¬Óëµ±Ç°·ûºÅ½øĞĞÓÅÏÈĞÔ±È½Ï
+		//å–å‡ºæ ˆé¡¶å…ƒç´ ï¼Œä¸å½“å‰ç¬¦å·è¿›è¡Œä¼˜å…ˆæ€§æ¯”è¾ƒ
 		char sym = coll2.top();  
 
-		//±È½ÏÁ½·ûºÅµÄÓÅÏÈĞÔ
+		//æ¯”è¾ƒä¸¤ç¬¦å·çš„ä¼˜å…ˆæ€§
 		if(getPri(c)<=getPri(sym))  
 		{
-			//Èç¹ûcµÄÓÅÏÈĞÔ±ÈÕ»¶¥·ûºÅĞ¡»òµÈÓÚ£¬µ¯³öÕ»¶¥ÔªËØ
+			//å¦‚æœcçš„ä¼˜å…ˆæ€§æ¯”æ ˆé¡¶ç¬¦å·å°æˆ–ç­‰äºï¼Œå¼¹å‡ºæ ˆé¡¶å…ƒç´ 
 			coll2.pop();
-			//²¢½«ÆäÑ¹Èëcoll3£¨ºó×º±í´ïÊ½£©ÖĞ
+			//å¹¶å°†å…¶å‹å…¥coll3ï¼ˆåç¼€è¡¨è¾¾å¼ï¼‰ä¸­
 			coll3.push_back(sym);
-			//µİ¹éµ÷ÓÃcheck,±È½Ïµ±Ç°·ûºÅcÓëÏÂÒ»¸öÕ»¶¥·ûºÅµÄÓÅÏÈĞÔ
+			//é€’å½’è°ƒç”¨check,æ¯”è¾ƒå½“å‰ç¬¦å·cä¸ä¸‹ä¸€ä¸ªæ ˆé¡¶ç¬¦å·çš„ä¼˜å…ˆæ€§
 			check(c,coll2,coll3);	
 		}
 		else 
 		{
-			//Èç¹ûc±ÈÕ»¶¥·ûºÅÓÅÏÈ¼¶´ó£¬ÄÇ½«cÑ¹Èëcoll2(²Ù×÷·ûÕ»£©ÖĞ
+			//å¦‚æœcæ¯”æ ˆé¡¶ç¬¦å·ä¼˜å…ˆçº§å¤§ï¼Œé‚£å°†cå‹å…¥coll2(æ“ä½œç¬¦æ ˆï¼‰ä¸­
 			coll2.push(c);  
 		}
 	}
 }
 
-//´ÓcollÖĞÈ¡³öÔªËØ£¬·ÖÅäÔªËØµ½coll2ºÍcoll3ÖĞ
+//ä»collä¸­å–å‡ºå…ƒç´ ï¼Œåˆ†é…å…ƒç´ åˆ°coll2å’Œcoll3ä¸­
 void allocate(deque<char>& coll1, stack<char>& coll2, deque<char>& coll3) 
 {  
 	while(!coll1.empty()) 
@@ -97,13 +97,13 @@ void allocate(deque<char>& coll1, stack<char>& coll2, deque<char>& coll3)
 		}
 		else 
 		{
-			//µ÷ÓÃcheckº¯Êı£¬Õë¶Ô²»Í¬Çé¿ö×÷³ö²»Í¬²Ù×÷
+			//è°ƒç”¨checkå‡½æ•°ï¼Œé’ˆå¯¹ä¸åŒæƒ…å†µä½œå‡ºä¸åŒæ“ä½œ
 			check(c,coll2,coll3);  
 		}
 
 	}
 
-	//Èç¹ûÊäÈë½áÊø£¬½«coll2µÄÔªËØÈ«²¿µ¯³ö£¬¼ÓÈëºó×º±í´ïÊ½ÖĞ
+	//å¦‚æœè¾“å…¥ç»“æŸï¼Œå°†coll2çš„å…ƒç´ å…¨éƒ¨å¼¹å‡ºï¼ŒåŠ å…¥åç¼€è¡¨è¾¾å¼ä¸­
 	while(!coll2.empty()) 
 	{  
 		char c = coll2.top();
@@ -112,7 +112,7 @@ void allocate(deque<char>& coll1, stack<char>& coll2, deque<char>& coll3)
 	}
 }
 
-//¼ÆËãºó×º±í´ïÊ½
+//è®¡ç®—åç¼€è¡¨è¾¾å¼
 void calculate(deque<char>& coll3, stack<int>& coll4) 
 {  
 	while(!coll3.empty()) 
@@ -120,14 +120,14 @@ void calculate(deque<char>& coll3, stack<int>& coll4)
 		char c = coll3.front();
 		coll3.pop_front();
 		
-		//Èç¹ûÊÇ²Ù×÷Êı£¬Ñ¹ÈëÕ»ÖĞ
+		//å¦‚æœæ˜¯æ“ä½œæ•°ï¼Œå‹å…¥æ ˆä¸­
 		if(c>='0'&&c<='9') 
 		{
-			//¼õÈ¥'0'µÃ³öÆ«ÒÆÖµ£¬¼´ÎªÕæÊµÊıÖµ£¨Èç¹ûÖ±½Ó×ª»»³Éint£¬½á¹û²»¶Ô£¬ÒòÎªchar ×ª»»ÎªintÊÇÆä±àÂëÖµ£¬ÀıÈç'1'µÄ±àÂëÖµÎª49
+			//å‡å»'0'å¾—å‡ºåç§»å€¼ï¼Œå³ä¸ºçœŸå®æ•°å€¼ï¼ˆå¦‚æœç›´æ¥è½¬æ¢æˆintï¼Œç»“æœä¸å¯¹ï¼Œå› ä¸ºchar è½¬æ¢ä¸ºintæ˜¯å…¶ç¼–ç å€¼ï¼Œä¾‹å¦‚'1'çš„ç¼–ç å€¼ä¸º49
 			int op = c-'0';    
 			coll4.push(op);     
 		}
-		else	 //Èç¹ûÊÇ²Ù×÷·û£¬´ÓÕ»ÖĞµ¯³öÔªËØ½øĞĞ¼ÆËã
+		else	 //å¦‚æœæ˜¯æ“ä½œç¬¦ï¼Œä»æ ˆä¸­å¼¹å‡ºå…ƒç´ è¿›è¡Œè®¡ç®—
 		{ 
 			int op1 = coll4.top();
 			coll4.pop();
@@ -145,7 +145,7 @@ void calculate(deque<char>& coll3, stack<int>& coll4)
 				coll4.push(op2*op1);
 				break;
 			case '/':
-				coll4.push(op2/op1);  //×¢ÒâÊÇop2(op)op1¶ø²»ÊÇop1(op)op2
+				coll4.push(op2/op1);  //æ³¨æ„æ˜¯op2(op)op1è€Œä¸æ˜¯op1(op)op2
 				break;
 			}
 		}
@@ -155,23 +155,23 @@ void calculate(deque<char>& coll3, stack<int>& coll4)
 
 int main()
 {
-	deque<char> coll1;  //Ê¢·ÅÖĞ×º±í´ïÊ½
-	stack<char> coll2;  //Ê¢·Å²Ù×÷·û
-	deque<char> coll3;	//Ê¢·Åºó×º±í´ïÊ½
-	stack<int>coll4;	//¼ÆËãºó×º±í´ïÊ½µÄ¸¨ÖúÈİÆ÷
+	deque<char> coll1;  //ç››æ”¾ä¸­ç¼€è¡¨è¾¾å¼
+	stack<char> coll2;  //ç››æ”¾æ“ä½œç¬¦
+	deque<char> coll3;	//ç››æ”¾åç¼€è¡¨è¾¾å¼
+	stack<int>coll4;	//è®¡ç®—åç¼€è¡¨è¾¾å¼çš„è¾…åŠ©å®¹å™¨
 	string str;
-	cout<<"ÇëÊäÈë±í´ïÊ½£¬°´enter½áÊø£º"<<endl;
+	cout<<"è¯·è¾“å…¥è¡¨è¾¾å¼ï¼ŒæŒ‰enterç»“æŸï¼š"<<endl;
 	cin>>str;
 	for(int i=0;i!=str.size();++i) 
 	{
-		//ÖğÒ»¼ÓÈëÃ¿¸ö×Ö·û£¬ÕâÀïÊ¹ÓÃdequeÒòÎªdequeÔÚÁ½¶ËÉ¾³ıÌí¼ÓµÄËÙ¶È×î¿ì
+		//é€ä¸€åŠ å…¥æ¯ä¸ªå­—ç¬¦ï¼Œè¿™é‡Œä½¿ç”¨dequeå› ä¸ºdequeåœ¨ä¸¤ç«¯åˆ é™¤æ·»åŠ çš„é€Ÿåº¦æœ€å¿«
 		coll1.push_back(str[i]);  
 	}
  
-	//´ÓcollÖĞÈ¡³öÔªËØ£¬·ÖÅäÔªËØµ½coll2ºÍcoll3ÖĞ
+	//ä»collä¸­å–å‡ºå…ƒç´ ï¼Œåˆ†é…å…ƒç´ åˆ°coll2å’Œcoll3ä¸­
 	allocate(coll1,coll2,coll3); 
 
-	//¼ÆËãºó×º±í´ïÊ½
+	//è®¡ç®—åç¼€è¡¨è¾¾å¼
 	calculate(coll3,coll4);  
-	cout<<"¼ÆËã½á¹ûÎª:"<<coll4.top()<<endl;
+	cout<<"è®¡ç®—ç»“æœä¸º:"<<coll4.top()<<endl;
 }

@@ -17,7 +17,7 @@ void insertsort(int a[], int n){
 			else
 				break;
 		}
-		cout << "µÚ" <<i<<"´Î:";
+		cout << "ç¬¬" <<i<<"æ¬¡:";
 		for (auto k = 0; k < n; k++)
 			cout << a[k] << " ";
 		cout << endl;

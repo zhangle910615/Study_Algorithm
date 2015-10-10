@@ -9,14 +9,14 @@ void merge(int *data, int p, int q, int r)
 
 	left = (int *)malloc(sizeof(int)*(n1));
 	right = (int *)malloc(sizeof(int)*(n2));
-	for (i = 0; i<n1; i++)  //¶Ô×óÊı×é¸³Öµ  
+	for (i = 0; i<n1; i++)  //å¯¹å·¦æ•°ç»„èµ‹å€¼  
 		left[i] = data[p + i];
-	for (j = 0; j<n2; j++)  //¶ÔÓÒÊı×é¸³Öµ  
+	for (j = 0; j<n2; j++)  //å¯¹å³æ•°ç»„èµ‹å€¼  
 		right[j] = data[q + 1 + j];
 
 	i = j = 0;
 	k = p;
-	while (i<n1 && j<n2) //½«Êı×éÔªËØÖµÁ½Á½±È½Ï£¬²¢ºÏ²¢µ½dataÊı×é  
+	while (i<n1 && j<n2) //å°†æ•°ç»„å…ƒç´ å€¼ä¸¤ä¸¤æ¯”è¾ƒï¼Œå¹¶åˆå¹¶åˆ°dataæ•°ç»„  
 	{
 		if (left[i] <= right[j])
 			data[k++] = left[i++];
@@ -24,39 +24,39 @@ void merge(int *data, int p, int q, int r)
 			data[k++] = right[j++];
 	}
 
-	for (; i<n1; i++) //Èç¹û×óÊı×éÓĞÔªËØÊ£Óà£¬Ôò½«Ê£ÓàÔªËØºÏ²¢µ½dataÊı×é  
+	for (; i<n1; i++) //å¦‚æœå·¦æ•°ç»„æœ‰å…ƒç´ å‰©ä½™ï¼Œåˆ™å°†å‰©ä½™å…ƒç´ åˆå¹¶åˆ°dataæ•°ç»„  
 		data[k++] = left[i];
-	for (; j<n2; j++) //Èç¹ûÓÒÊı×éÓĞÔªËØÊ£Óà£¬Ôò½«Ê£ÓàÔªËØºÏ²¢µ½dataÊı×é  
+	for (; j<n2; j++) //å¦‚æœå³æ•°ç»„æœ‰å…ƒç´ å‰©ä½™ï¼Œåˆ™å°†å‰©ä½™å…ƒç´ åˆå¹¶åˆ°dataæ•°ç»„  
 		data[k++] = right[j];
 }
 
 void mergeSort(int *data, int p, int r)
 {
 	int q;
-	if (p < r) //Ö»ÓĞÒ»¸ö»òÎŞ¼ÇÂ¼Ê±²»ĞëÅÅĞò   
+	if (p < r) //åªæœ‰ä¸€ä¸ªæˆ–æ— è®°å½•æ—¶ä¸é¡»æ’åº   
 	{
-		q = (int)((p + r) / 2);      //½«dataÊı×é·Ö³ÉÁ½°ë     
-		mergeSort(data, p, q);   //µİ¹é²ğ·Ö×óÊı×é  
-		mergeSort(data, q + 1, r); //µİ¹é²ğ·ÖÓÒÊı×é  
-		merge(data, p, q, r);    //ºÏ²¢Êı×é  
+		q = (int)((p + r) / 2);      //å°†dataæ•°ç»„åˆ†æˆä¸¤åŠ     
+		mergeSort(data, p, q);   //é€’å½’æ‹†åˆ†å·¦æ•°ç»„  
+		mergeSort(data, q + 1, r); //é€’å½’æ‹†åˆ†å³æ•°ç»„  
+		merge(data, p, q, r);    //åˆå¹¶æ•°ç»„  
 	}
 }
 int main()
 {
 	int n;
 	int* input = NULL;
-	//ÊäÈëÊı¾İ      
-	cout << "ÇëÊäÈëÊı×éµÄ³¤¶È: ";
+	//è¾“å…¥æ•°æ®      
+	cout << "è¯·è¾“å…¥æ•°ç»„çš„é•¿åº¦: ";
 	cin >> n;
 	input = (int *)malloc(sizeof(int)*(n));
-	cout << "Çë¶ÔÊı×é¸³Öµ: ";
+	cout << "è¯·å¯¹æ•°ç»„èµ‹å€¼: ";
 	for (int i = 0; i<n; ++i)
 	{
 		cin >> input[i];
 	}
-	//´¦ÀíÊı¾İ      
+	//å¤„ç†æ•°æ®      
 	mergeSort(input, 0, n - 1);
-	//Êä³ö½á¹û      
+	//è¾“å‡ºç»“æœ      
 	for (int i = 0; i<n; ++i)
 		cout << input[i] << " ";
 	cout << endl;

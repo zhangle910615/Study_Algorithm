@@ -1,11 +1,11 @@
-//算法导论最长公共子序列问题
+//绠楁硶瀵艰鏈�闀垮叕鍏卞瓙搴忓垪闂
 
 #include<iostream>
 #include<cstring>
 using namespace std;
 
-int c[100][100]; // c[i][j]表示序列S1前i个元素和S2的前j个元素的LCS
-int b[100][100]; //便于求解最优解
+int c[100][100]; // c[i][j]琛ㄧず搴忓垪S1鍓峣涓厓绱犲拰S2鐨勫墠j涓厓绱犵殑LCS
+int b[100][100]; //渚夸簬姹傝В鏈�浼樿В
 
 void LCS_Length(char x[], char y[]);
 void Print_LCS(char x[], int i, int j);

@@ -13,10 +13,10 @@ typedef struct Node {
 	struct Node *rchild;
 } *Tree;
 
-int index = 0;  //È«¾ÖË÷Òı±äÁ¿
+int index = 0;  //å…¨å±€ç´¢å¼•å˜é‡
 
-//¶ş²æÊ÷¹¹ÔìÆ÷,°´ÏÈĞò±éÀúË³Ğò¹¹Ôì¶ş²æÊ÷
-//ÎŞ×ó×ÓÊ÷»òÓÒ×ÓÊ÷ÓÃ'#'±íÊ¾
+//äºŒå‰æ ‘æ„é€ å™¨,æŒ‰å…ˆåºéå†é¡ºåºæ„é€ äºŒå‰æ ‘
+//æ— å·¦å­æ ‘æˆ–å³å­æ ‘ç”¨'#'è¡¨ç¤º
 void treeNodeConstructor(Tree &root, Element data[]){
 	Element e = data[index++];
 	if (e == '#'){
@@ -25,32 +25,32 @@ void treeNodeConstructor(Tree &root, Element data[]){
 	else{
 		root = (Node *)malloc(sizeof(Node));
 		root->data = e;
-		treeNodeConstructor(root->lchild, data);  //µİ¹é¹¹½¨×ó×ÓÊ÷
-		treeNodeConstructor(root->rchild, data);  //µİ¹é¹¹½¨ÓÒ×ÓÊ÷
+		treeNodeConstructor(root->lchild, data);  //é€’å½’æ„å»ºå·¦å­æ ‘
+		treeNodeConstructor(root->rchild, data);  //é€’å½’æ„å»ºå³å­æ ‘
 	}
 }
 
-//Éî¶ÈÓÅÏÈ±éÀú
+//æ·±åº¦ä¼˜å…ˆéå†
 void depthFirstSearch(Tree root){
-	stack<Node *> nodeStack;  //Ê¹ÓÃC++µÄSTL±ê×¼Ä£°å¿â
+	stack<Node *> nodeStack;  //ä½¿ç”¨C++çš„STLæ ‡å‡†æ¨¡æ¿åº“
 	nodeStack.push(root);
 	Node *node;
 	while (!nodeStack.empty()){
 		node = nodeStack.top();
-		printf(format, node->data);  //±éÀú¸ù½áµã
+		printf(format, node->data);  //éå†æ ¹ç»“ç‚¹
 		nodeStack.pop();
 		if (node->rchild){
-			nodeStack.push(node->rchild);  //ÏÈ½«ÓÒ×ÓÊ÷Ñ¹Õ»
+			nodeStack.push(node->rchild);  //å…ˆå°†å³å­æ ‘å‹æ ˆ
 		}
 		if (node->lchild){
-			nodeStack.push(node->lchild);  //ÔÙ½«×ó×ÓÊ÷Ñ¹Õ»
+			nodeStack.push(node->lchild);  //å†å°†å·¦å­æ ‘å‹æ ˆ
 		}
 	}
 }
 
-//¹ã¶ÈÓÅÏÈ±éÀú
+//å¹¿åº¦ä¼˜å…ˆéå†
 void breadthFirstSearch(Tree root){
-	queue<Node *> nodeQueue;  //Ê¹ÓÃC++µÄSTL±ê×¼Ä£°å¿â
+	queue<Node *> nodeQueue;  //ä½¿ç”¨C++çš„STLæ ‡å‡†æ¨¡æ¿åº“
 	nodeQueue.push(root);
 	Node *node;
 	while (!nodeQueue.empty()){
@@ -58,22 +58,22 @@ void breadthFirstSearch(Tree root){
 		nodeQueue.pop();
 		printf(format, node->data);
 		if (node->lchild){
-			nodeQueue.push(node->lchild);  //ÏÈ½«×ó×ÓÊ÷Èë¶Ó
+			nodeQueue.push(node->lchild);  //å…ˆå°†å·¦å­æ ‘å…¥é˜Ÿ
 		}
 		if (node->rchild){
-			nodeQueue.push(node->rchild);  //ÔÙ½«ÓÒ×ÓÊ÷Èë¶Ó
+			nodeQueue.push(node->rchild);  //å†å°†å³å­æ ‘å…¥é˜Ÿ
 		}
 	}
 }
 int main() {
 
-	//ÉÏÍ¼ËùÊ¾µÄ¶ş²æÊ÷ÏÈĞò±éÀúĞòÁĞ,ÆäÖĞÓÃ'#'±íÊ¾½áµãÎŞ×ó×ÓÊ÷»òÎŞÓÒ×ÓÊ÷
+	//ä¸Šå›¾æ‰€ç¤ºçš„äºŒå‰æ ‘å…ˆåºéå†åºåˆ—,å…¶ä¸­ç”¨'#'è¡¨ç¤ºç»“ç‚¹æ— å·¦å­æ ‘æˆ–æ— å³å­æ ‘
 	Element data[15] = { 'A', 'B', 'D', '#', '#', 'E', '#', '#', 'C', 'F', '#', '#', 'G', '#', '#' };
 	Tree tree;
 	treeNodeConstructor(tree, data);
-	printf("Éî¶ÈÓÅÏÈ±éÀú¶ş²æÊ÷½á¹û: ");
+	printf("æ·±åº¦ä¼˜å…ˆéå†äºŒå‰æ ‘ç»“æœ: ");
 	depthFirstSearch(tree);
-	printf("\n\n¹ã¶ÈÓÅÏÈ±éÀú¶ş²æÊ÷½á¹û: ");
+	printf("\n\nå¹¿åº¦ä¼˜å…ˆéå†äºŒå‰æ ‘ç»“æœ: ");
 	breadthFirstSearch(tree);
 	printf("\n");
 	system("pause");

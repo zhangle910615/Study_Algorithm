@@ -76,7 +76,7 @@ int main() {
 	for (int i = 0; i < Height(T); ++i)
 		num[i] = 0;
 	levcount(T, 0, num);
-	cout << "每层节点个数";
+	cout << "姣忓眰鑺傜偣涓暟";
 	for (int i = 0; i < Height(T); ++i)
 		cout << num[i] << " ";
 	cout << endl;
