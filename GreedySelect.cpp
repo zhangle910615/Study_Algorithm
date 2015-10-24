@@ -1,4 +1,4 @@
-//�㷨���� ��16�� ̰���㷨 �ѡ�� o(n)
+//算法导论 第16章 贪心算法 活动选择 o(n)
 #include <iostream>
 #include <stdlib.h>
 using namespace std;

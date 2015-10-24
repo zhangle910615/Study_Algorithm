@@ -1,5 +1,5 @@
-//Ëã·¨µ¼ÂÛ µÚ16ÕÂ Ì°ĞÄËã·¨ »î¶¯Ñ¡Ôñ
-//¶¯Ì¬¹æ»®½â¾ö·½·¨  Ê±¼ä¸´ÔÓ¶Èo(n^3)
+//ç®—æ³•å¯¼è®º ç¬¬16ç«  è´ªå¿ƒç®—æ³• æ´»åŠ¨é€‰æ‹©
+//åŠ¨æ€è§„åˆ’è§£å†³æ–¹æ³•  æ—¶é—´å¤æ‚åº¦o(n^3)
 #include <iostream>
 #include <stdlib.h>
 using namespace std;
@@ -39,20 +39,20 @@ int main() {
 	int ret[N + 1][N + 1] = { 0 };
 	int i, j;
 	dynamic_activity_selector(s, f, c, ret);
-	printf("c[i][j]µÄÖµÈçÏÂËùÊ¾£º\n");
+	printf("c[i][j]çš„å€¼å¦‚ä¸‹æ‰€ç¤ºï¼š\n");
 	for (i = 1;i <= N;i++){
 		for (j = 1;j <= N;j++)
 		      printf("%d ", c[i][j]);
 	    printf("\n");
 	}
-	printf("×î´ó×Ó¼¯µÄ¸öÊıÎª: %d\n", c[1][N] + 2);
-	printf("ret[i][j]µÄÖµÈçÏÂËùÊ¾£º\n");
+	printf("æœ€å¤§å­é›†çš„ä¸ªæ•°ä¸º: %d\n", c[1][N] + 2);
+	printf("ret[i][j]çš„å€¼å¦‚ä¸‹æ‰€ç¤ºï¼š\n");
 	for (i = 1;i <= N;i++){
 		for (j = 1;j <= N;j++)
 			 printf("%d ", ret[i][j]);
 		 printf("\n");
 	}
-	printf("×î´ó×Ó¼¯Îª:{ a1 ");
+	printf("æœ€å¤§å­é›†ä¸º:{ a1 ");
 	trace_route(ret, 1, N);
 	printf("a%d}\n", N);
 
