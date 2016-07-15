@@ -177,6 +177,17 @@ int Same(LNode *&t1, LNode *&t2){
 		return 0;
 	return Same(t1->lchild, t2->lchild) && Same(t1->rchild, t2->rchild);
 }
+// Judge whether tree is symmetric,  [1,2,2,3,4,4,3]
+bool mirror(TreeNode* rt1,TreeNode* rt2){  /*To judge whether two trees are mirrors of each other*/
+    if(rt1==NULL) return rt2==NULL;
+    if(rt2==NULL) return false;
+    if(rt1->val!=rt2->val) return false;
+    return mirror(rt1->left,rt2->right)&&mirror(rt1->right,rt2->left);
+}
+bool isSymmetric(TreeNode* root) {
+    if(root==NULL) return true;
+    return mirror(root->left,root->right);
+}
 //¸´ÖÆÊ÷
 LNode *CopyTree(LNode *T){
 	LNode *p, *q, *s;
